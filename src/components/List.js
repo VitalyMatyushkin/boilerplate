@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import '../styles/List.scss';
 
@@ -12,11 +13,21 @@ export class List extends Component {
 	}
 
 	componentDidMount() {
-		fetch('https://facebook.github.io/react-native/movies.json')
-		.then(respons => respons.json())
-		.then(result => {
-			this.state({isLoading: false});
-			console.log(result);
+		axios({
+			method: 'post',
+			headers: {
+				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Expose-Headers': 'action-descriptor-id,notification-mode',
+				'action-descriptor-id1': '5b6a81431088ec7732cb8b7'
+			},
+			url: 'https://api2.squadintouch.com/i/login',
+			data: {
+				email: "reference@squadintouch.com",
+				password: "reference"
+			}
+		})
+		.then(res => {
+			console.log(res)
 		});
 	}
 
